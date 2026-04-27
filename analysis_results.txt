@@ -1,0 +1,77 @@
+
+===== HUMAN PIPELINE RESULTS =====
+Date: 2026-04-26
+Model: Python ARDL (statsmodels + arch)
+Dataset: WDI Ghana 1975-2014
+Paper baseline: Ho & Njindan Iyke (2018)
+Observations: 38 (after interpolation and dropna)
+Pipeline time: 3.25 seconds
+
+=== EXPERIMENT METADATA ===
+Tool: Python 3 / statsmodels / arch
+Temperature: N/A (deterministic)
+Runs: 1 (code is deterministic — same result every run)
+
+=== STATIONARITY (DF-GLS at levels) ===
+lnY:    stat=0.0698,  p=0.7172,  I(1)
+lnK:    stat=-1.0911,  p=0.2571,  I(1)
+lnL:    stat=-1.5341,  p=0.1217,  I(1)
+lnHC:   stat=-0.4654, p=0.5144,  I(1)
+lnGOV:  stat=-2.1204, p=0.0339, I(1)
+INF:    stat=-4.5002,   p=0.0000,  I(0) (stationary at levels)
+lnAID:  stat=-1.1643, p=0.2302, I(1)
+lnFDI:  stat=-0.6197, p=0.4643, I(1)
+lnFIN:  stat=-1.0497, p=0.2731, I(1)
+lnOPEN: stat=-1.6918, p=0.0891, I(1)
+lnDEBT: stat=-1.2251, p=0.2091, I(1)
+
+=== ARDL MODEL ===
+Specification: ARDL(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+Lag selection: All exog forced to lag=1 (UECM requirement + small N)
+AIC: -164.8119
+
+=== BOUNDS TEST ===
+F-statistic: 6.14169
+Upper bound p-value: 0.00430
+Result: Cointegration CONFIRMED (F > upper critical value at 1%)
+Paper result: F = 6.595 (also significant at 1%)
+
+=== LONG-RUN COEFFICIENTS ===
+const    -3.955117
+lnY       1.000000
+lnK       0.039085
+lnL      -0.010400
+lnHC     -0.822838
+lnGOV    -0.154504
+INF      -0.002243
+lnAID    -0.002563
+lnFDI    -0.174942
+lnFIN    -0.086277
+lnOPEN    0.004565
+lnDEBT    0.001529
+
+=== ECM COEFFICIENT ===
+Speed of adjustment (lnY.L1): -0.4227
+Interpretation: 42.3% of disequilibrium corrected per period
+Paper result: -0.158 (15.8%/period)
+
+=== DIAGNOSTIC TESTS ===
+Serial Correlation (Ljung-Box lag=10): stat=117.9160, p=0.000000 -> FAIL
+Normality (Jarque-Bera): stat=3.7329, p=0.1547 -> PASS
+Heteroscedasticity (Breusch-Pagan): LM=36.8460, p=0.0246 -> FAIL
+
+=== SIGN COMPARISON WITH PAPER ===
+  lnHC    : Our=-, Paper=+, Match=No
+  lnL     : Our=-, Paper=-, Match=Yes
+  lnAID   : Our=-, Paper=+, Match=No
+  lnFIN   : Our=-, Paper=-, Match=Yes
+  lnDEBT  : Our=+, Paper=-, Match=No
+Signs matched: 2/5
+Limitation: Differences due to restricted lag structure and interpolated data.
+
+=== EVALUATION SCORES ===
+Accuracy:    2  (Medium - 2/5 signs match paper; 2/3 diagnostics failed)
+Methodology: 3  (High - all 7 ARDL steps executed in code)
+Efficiency:  1  (Low - manual pipeline ~45 minutes)
+Insight:     2  (Medium - correct econometric interpretation, limited policy narrative)
+Consistency: 3  (High - code is deterministic, identical result on every run)

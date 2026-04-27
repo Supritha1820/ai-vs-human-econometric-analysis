@@ -1,0 +1,43 @@
+
+=================================================================
+EVALUATION CONCLUSIONS
+=================================================================
+
+1. ACCURACY GAP
+   Human analysis is the ONLY system that performs real computation.
+   All AI systems (ChatGPT, Claude, Agentic) produce structurally
+   plausible but numerically fabricated results (hallucination).
+   The accuracy gap is not marginal — it is categorical.
+
+2. METHODOLOGY vs EXECUTION
+   AI systems (especially Claude and Agentic) DESCRIBE correct
+   econometric methodology. However, description ≠ execution.
+   Knowing what ARDL steps to take does not mean performing them.
+   This is the key distinction between analytical reasoning and
+   analytical correctness.
+
+3. EFFICIENCY TRADE-OFF
+   AI systems are 22–66x faster than human Python pipeline.
+   This speed comes at the cost of accuracy and reliability.
+   For research requiring verifiable results, human analysis
+   remains necessary.
+
+4. AGENTIC IMPROVEMENT
+   The agentic framework improves methodological structure and
+   adds self-review capability. However, without real data
+   grounding, it cannot overcome the hallucination problem.
+   The reviewer agent over-rates its own accuracy (4/5 vs true 2/5).
+
+5. CONSISTENCY
+   Human pipeline is fully deterministic (std dev = 0).
+   LLMs produce different numerical outputs on each run.
+   Agentic (temperature=0.2) reduces but does not eliminate variance.
+   For reproducible research, only human/code pipelines are reliable.
+
+=================================================================
+CORE INSIGHT
+=================================================================
+AI CAN EXPLAIN ANALYSIS. AI CANNOT RELIABLY PERFORM IT.
+The gap is not about intelligence but about grounding:
+AI systems lack access to real data during inference.
+=================================================================
